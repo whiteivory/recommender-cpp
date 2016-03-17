@@ -16,9 +16,4 @@
 *.rtf	 diff=astextplain
 *.RTF	 diff=astextplain
 
-*.opensdf
-*.sdf
-*.sln
-*.suo
-*.vcxproj
-*.filters
+
