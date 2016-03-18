@@ -6,12 +6,16 @@ void User::init(int id, string name, const list<Rating>& li){
 	ratingsByItemId = new map < int, Rating >;
 	setRatings(li);
 	userContent = new list < Content >(3);
+	_allRatings = *new list<Rating>();
+	_allItemId = *new list<int>();
 }
 
 User::~User()
 {
 	delete ratingsByItemId;
 	delete userContent;
+	delete &_allRatings;
+	delete &_allItemId;
 }
 
 void User::setRatings(const list<Rating>& li)const{
@@ -29,13 +33,24 @@ double User::getAverageRating() const{
 	}
 	return allUserRatings.size() > 0 ? allRatingsSum / allUserRatings.size() : 2.5;
 }
-list<Rating> User::getAllRatings() const{
-	list<Rating> li;
+
+const list<Rating>& User::getAllRatings() const{
+	if (_hasSetAllratings) return _allRatings;
 	for (map<int, Rating>::iterator it = ratingsByItemId->begin(); it != ratingsByItemId->end(); it++){
-		li.push_back(it->second);
+		_allRatings.push_back(it->second);
 	}
-	return li;  //return by value;
+	_hasSetAllratings = true;
+	return _allRatings;  //return by value;
 }
+const list<int>& User::getAllItemID()const{
+	if (_hasSetAllItemId) return _allItemId;
+	for (map<int, Rating>::iterator it = ratingsByItemId->begin(); it != ratingsByItemId->end(); it++){
+		_allItemId.push_back(it->first);
+	}
+	_hasSetAllItemId = true;
+	return _allItemId;
+}
+
 Rating User::getItemRating(int ItemID)const{
 	return ratingsByItemId->find(ItemID)->second;
 }
@@ -62,13 +77,7 @@ void User::addUserContent(Content c){
 	userContent->push_back(c);
 }
 
-list<int> User::getAllItemID()const{
-	list<int> li;
-	for (map<int, Rating>::iterator it = ratingsByItemId->begin(); it != ratingsByItemId->end(); it++){
-		li.push_back(it->first);
-	}
-	return li;
-}
+
 vector<int> User::getSharedItem(const User& x, const User& y){
 	list<int> lx = x.getAllItemID();
 	list<int> ly = y.getAllItemID();

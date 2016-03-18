@@ -15,9 +15,13 @@ using namespace std;
 class User
 {
 public:
-	User(int id, string name, const list<Rating>&li) { init(id, name, li); }
-	User(int id, string name) { list<Rating> li; init(id, name, li); }
-	User(int id) {
+	User(int id, string name, const list<Rating>&li){
+		init(id, name, li);
+	}
+	User(int id, string name) {
+		list<Rating> li; init(id, name, li);
+	}
+	User(int id)  {
 		list<Rating> li;
 		stringstream ss;
 		ss << id;
@@ -36,8 +40,8 @@ public:
 
 	double getAverageRating()const;
 	void setRatings(const list<Rating>& li)const;
-	list<Rating> getAllRatings()const;
-	list<int> getAllItemID() const;
+	const list<Rating>& getAllRatings()const;  //不允许改动，设置const
+	const list<int>& getAllItemID() const;
 	bool hasItemRating(int ItemID)const;
 	Rating getItemRating(int ItemID)const;
 	list<Content> getUserContent()const;
@@ -56,6 +60,11 @@ private:
 protected:
 	map<int, Rating>* ratingsByItemId;
 	list<Content>* userContent;
+private://由于这两个只在调用get函数的时候才生成，所以不设置成protected
+	mutable list<Rating> _allRatings;
+	mutable bool _hasSetAllratings = false;  //mutable的运用
+	mutable list<int> _allItemId;
+	mutable bool _hasSetAllItemId = false;
 };
 
 #endif

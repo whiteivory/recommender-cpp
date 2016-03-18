@@ -1,8 +1,9 @@
 #ifndef _RATING_H_
 #define _RATING_H_
-#include"item.h"
+#include"Item.h"
 #include<iostream>
 using namespace std;
+class Item;
 class Rating
 {
 public:
