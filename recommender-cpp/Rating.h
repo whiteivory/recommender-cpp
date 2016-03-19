@@ -21,6 +21,7 @@ public:
 	//
 	bool operator==(const Rating&)const;
 	Rating& operator=(const Rating&);
+	bool operator<(const Rating&)const;
 //protected:  经过一些挣扎，决定去掉这个类，而把返回Item的功能存放在Item类中，根据传入的Rating，我们写代码中应该尽量减少循环依赖的出现
 	//Item* _item;
 private:

@@ -13,6 +13,12 @@ public:
 	Item(int id, string name, const list<Rating>& li);
 	~Item();
 	Item& operator= (const Item& rhs);
+	int getItemId()const{ return _itemId; }
+	string getName() const { return _name; }
+	double getAverateRating()const;
+	Rating getUserRating(int)const;
+	void setUserRating(const Rating&);
+	static vector<int> getSharedUserIds(const Item& i1, const Item& i2);
 private:
 	int _itemId;
 	string _name;

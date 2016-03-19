@@ -1,3 +1,6 @@
+/*
+todo :当往map插入值得时候，那个容器也要插入相应的内容
+*/
 #ifndef _USER_H_
 #define _USER_H_
 
@@ -28,6 +31,7 @@ public:
 		string tmp = ss.str();
 		init(id, tmp,li);
 	}
+	User(const User& rhs){ init(rhs._id, rhs._name, rhs.getAllRatings()); }
 	~User();
 
 	int getId()const{ return _id; }

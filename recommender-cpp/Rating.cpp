@@ -20,3 +20,7 @@ ostream& operator<<(ostream&os, const Rating& R){
 	os << typeid(R).name() << "[userID:" << R.getUserId() << ", itemID:" << R.getItemId() << ", rating:" << R.getRating() << "]" << endl;
 	return os;
 }
+
+bool Rating::operator< (const Rating& rhs)const{
+	return this->_rating < rhs._rating;
+}

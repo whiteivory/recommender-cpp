@@ -10,6 +10,7 @@ void User::init(int id, string name, const list<Rating>& li){
 	_allItemId = *new list<int>();
 }
 
+
 User::~User()
 {
 	delete ratingsByItemId;
