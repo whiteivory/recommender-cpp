@@ -2,16 +2,9 @@
 Rating::Rating(int userID, int itemID, int rating)
 	:_userId(userID), _itemId(itemID), _rating(rating)
 {
-	_item = new Item();
 }
 Rating::~Rating(){
-	delete _item;
 }
-void Rating::setItem(const Item& item)
-{ 
-	*_item = item;
-}
-
 bool Rating::operator==(const Rating& rhs)const{
 	if ((_itemId == rhs.getItemId()) &&( _rating == rhs.getRating()) &&( _userId == rhs.getUserId()))
 		return true;
@@ -21,7 +14,6 @@ Rating& Rating::operator=(const Rating&rhs){
 	setUserId(rhs.getUserId());
 	setItemId(rhs.getItemId());
 	setRating(rhs.getRating());
-	setItem(*rhs.getItem());
 	return *this;
 }
 ostream& operator<<(ostream&os, const Rating& R){
