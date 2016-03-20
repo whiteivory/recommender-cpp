@@ -5,20 +5,13 @@
 using namespace std;
 
 
-class A{
+class A{//³éÏóÀà
 public:
-	int _a;
-	A(int a) :_a(a){};
+	virtual void foo() = 0;
 };
 class B{
-	A* _ap;
 public:
-	B(A& a){
-		_ap = &a;
-	}
-	~B(){
-
-	};
+	A getA();
 };
 void main(){
 	int *a = new int(1);
