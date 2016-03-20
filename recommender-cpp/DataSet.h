@@ -1,6 +1,10 @@
+#pragma once
+
 #include<vector>
 #include"Rating.h"
 #include<string>
+#include"User.h"
+#include"Item.h"
 using namespace std;
 class DataSet{
 public:
@@ -12,6 +16,8 @@ public:
 	virtual double getAverageUserRating()const = 0;
 	virtual string getName()const = 0;
 	
+	virtual User getUser(int userId) const = 0;
+	virtual Item getItem(int itemId) const = 0;
 	/*return true if ids aren't in sequence and can't be used as array indexes.
      * false if user or items ids can be treated as sequences that start with 1. 
      * In this case index will be derived from id: index = id - 1.
