@@ -21,8 +21,8 @@ vector<User> SimilarUser::getTopNFriends(vector<SimilarUser>& vu, int topN)const
 	susort(vu);
 	while (topN-- >0)
 	{
-		for (vector<User>::reverse_iterator it1 = vu.rbegin(); it1 != vu.rend(); it1++){
-			rv.push_back(*it1);
+		for (vector<SimilarUser>::reverse_iterator it1 = vu.rbegin(); it1 != vu.rend(); it1++){
+			rv.push_back(it1->getUser());
 		}
 	}
 	return rv;
