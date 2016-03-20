@@ -21,8 +21,6 @@ public:
 	};
 };
 void main(){
-	A* a = new A(1);
-	B b = *new B(*a);
-	delete &b;
-	cout << a->_a;
+	int *a = new int(1);
+	cout << a[2];
 }

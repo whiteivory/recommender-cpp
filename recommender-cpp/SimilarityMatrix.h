@@ -1,8 +1,39 @@
 #pragma once
+#include<string>
+#include"RatingCountMatrix.h"
+using namespace std;
 class SimilarityMatrix
 {
 public:
-	SimilarityMatrix();
-	~SimilarityMatrix();
+	/**
+	* Returns matrix of similarities. For user-oriented methods it represents
+	* similarities between users and for item-oriented methods the matrix
+	* represents similarities between items.
+	*
+	* @return similarity matrix
+	*/
+	virtual double** getSimilarityMatrix() = 0;
+
+	/**
+	* Returns similarity value between two objects identified by their IDs.
+	*
+	* @param idX
+	* @param idY
+	* @return
+	*/
+	virtual double getValue(int idX, int idY) = 0;
+
+	/**
+	* Similarity matrix id.
+	* @return
+	*/
+	virtual string getId();
+
+	virtual RatingCountMatrix getRatingCountMatrix(int idX, int idY)const = 0;
+
+	virtual bool isRatingCountMatrixAvailable()const = 0;
+
+	virtual  void print() const = 0;
+	virtual ~SimilarityMatrix() = 0;
 };
 

@@ -24,6 +24,7 @@ void User::setRatings(const list<Rating>& li)const{
 	for each (Rating ra in li)
 	{
 		ratingsByItemId->insert(pair<int, Rating>(ra.getItemId(), ra));
+		_allRatings.push_back(ra);
 	}
 }
 double User::getAverageRating() const{
@@ -52,9 +53,11 @@ const list<int>& User::getAllItemID()const{
 	return _allItemId;
 }
 
+//assert hasItemRating()
 Rating User::getItemRating(int ItemID)const{
 	return ratingsByItemId->find(ItemID)->second;
 }
+
 list<Content> User::getUserContent()const{
 	return *userContent;
 }

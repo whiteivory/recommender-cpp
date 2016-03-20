@@ -8,6 +8,7 @@ private:
 	RecommendationType type;
 	static const double DEFAULT_SIMILARITY_THRESHOLD;
 	static const double MAX_RATING;
+
 public:
 	Delphi();
 	~Delphi();

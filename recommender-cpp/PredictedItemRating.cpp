@@ -1,7 +1,7 @@
 #include "PredictedItemRating.h"
 #include<algorithm>
 
-PredictedItemRating::PredictedItemRating(int userId = 0, int itemId = 0, int rating = 0)
+PredictedItemRating::PredictedItemRating(int userId , int itemId , int rating )
 {
 	_userId = userId;
 	_itemId = itemId;
@@ -12,13 +12,13 @@ PredictedItemRating::PredictedItemRating(int userId = 0, int itemId = 0, int rat
 PredictedItemRating::~PredictedItemRating()
 {
 }
-void PredictedItemRating::prsort(const vector<PredictedItemRating>& v){
+void PredictedItemRating::prsort(vector<PredictedItemRating>& v){
 	sort(v.begin(), v.end());
 }
-vector<PredictedItemRating> PredictedItemRating::getTopNRecommendations(const vector<PredictedItemRating>& v, int topN){
+vector<PredictedItemRating> PredictedItemRating::getTopNRecommendations( vector<PredictedItemRating>& v, int topN){
 	prsort(v);
 	vector<PredictedItemRating> rv;
-		for (vector<PredictedItemRating>::reverse_iterator it = v.rbegin(); it != v.rend(); it++){
+		for (vector<PredictedItemRating>::const_reverse_iterator it = v.rbegin(); it != v.rend(); it++){
 			if (topN-- <= 0) break;
 			rv.push_back(*it);
 		}
@@ -26,4 +26,5 @@ vector<PredictedItemRating> PredictedItemRating::getTopNRecommendations(const ve
 			throw invalid_argument("topN too big!");
 		return rv;
 }
-
+bool  PredictedItemRating::operator<(const PredictedItemRating& rhs)const{ return _rating < rhs._rating; }
+bool  PredictedItemRating::operator==(const PredictedItemRating& rhs)const { return _rating == rhs._rating; }
