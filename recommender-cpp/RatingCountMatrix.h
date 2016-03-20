@@ -11,10 +11,11 @@ private:
 
 	void calculate(const User& u1, const User& u2);
 public:
+	RatingCountMatrix();
 	RatingCountMatrix(const User& u1,const User& u2,int nRatingValues);
 	int getTotalCount()const;
 	int getAgreementCount() const;
-	
+	RatingCountMatrix& operator=(const RatingCountMatrix&rhs);
 	~RatingCountMatrix();
 };
 
