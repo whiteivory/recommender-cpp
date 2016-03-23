@@ -41,6 +41,7 @@ RatingCountMatrix& RatingCountMatrix::operator=(const RatingCountMatrix&rhs){
 	for (int i = 0; i < oldn; i++)
 		delete[] old[i];
 	delete[] old;
+	return *this;
 }
 
 void RatingCountMatrix::calculate(const User& u1, const User& u2){

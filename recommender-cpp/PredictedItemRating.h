@@ -10,7 +10,7 @@ private:
 	int	_itemId;
 	double _rating;
 public:
-	PredictedItemRating(int userId = 0, int itemId = 0, int rating = 0);
+	PredictedItemRating(int userId = 0, int itemId = 0, double rating = 0);
 	~PredictedItemRating();
 	bool operator<(const PredictedItemRating& rhs)const;
 	bool operator==(const PredictedItemRating& rhs)const;

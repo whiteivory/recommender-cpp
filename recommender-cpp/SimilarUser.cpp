@@ -17,10 +17,11 @@ void SimilarUser::susort(vector<SimilarUser>& vu){
 }
 
 vector<SimilarUser> SimilarUser::getTopNFriends(vector<SimilarUser>& vu, int topN){
-	vector<User> rv;
+	susort(vu);
+	vector<SimilarUser> rv;
 		for (vector<SimilarUser>::reverse_iterator it1 = vu.rbegin(); it1 != vu.rend(); it1++){
 			if (topN-- <= 0)break;
-			rv.push_back(it1->getUser());
+			rv.push_back(*it1);
 		}
 		if (topN > 0)
 			throw invalid_argument("topN too big!");

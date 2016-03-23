@@ -54,5 +54,5 @@ double BaseSimilarityMatrix::getValue(int idx, int idy){
 }
 //Todo:
 ostream& operator<< (ostream& os, const BaseSimilarityMatrix& bm){
-
+	return os;
 }

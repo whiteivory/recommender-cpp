@@ -1,7 +1,7 @@
 #include "PredictedItemRating.h"
 #include<algorithm>
 
-PredictedItemRating::PredictedItemRating(int userId , int itemId , int rating )
+PredictedItemRating::PredictedItemRating(int userId , int itemId , double rating )
 {
 	_userId = userId;
 	_itemId = itemId;

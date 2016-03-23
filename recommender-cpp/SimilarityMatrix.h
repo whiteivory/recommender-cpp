@@ -27,12 +27,12 @@ public:
 	* Similarity matrix id.
 	* @return
 	*/
-	virtual string getId();
+	virtual string getId()const = 0;
 
 	virtual RatingCountMatrix& getRatingCountMatrix(int idX, int idY)const = 0;
 
 	virtual bool isRatingCountMatrixAvailable()const = 0;
 
-	virtual ~SimilarityMatrix() = 0;
+	virtual ~SimilarityMatrix() {};
 };
 

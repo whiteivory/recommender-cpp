@@ -35,5 +35,6 @@ public:
 	double getValue(int idx, int idy);
 	virtual void calculate(DataSet& ds) = 0;
 	virtual ~BaseSimilarityMatrix();
+	string getId()const{ return _id; }
 };
 
