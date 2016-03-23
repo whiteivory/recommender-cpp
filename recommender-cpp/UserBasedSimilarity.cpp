@@ -1,10 +1,10 @@
 #include "UserBasedSimilarity.h"
 #include<sstream>
 
-UserBasedSimilarity::UserBasedSimilarity(DataSet& ds)
+UserBasedSimilarity::UserBasedSimilarity(string id,DataSet& ds)
 	:BaseSimilarityMatrix()
 {
-	_id = typeid(this).name();
+	_id = id;
 	//_useObjIdToIndexMapping = dataSet.isIdMappingRequired();
 	calculate(ds);
 }

@@ -8,7 +8,7 @@ class UserBasedSimilarity :
 {
 
 public:
-	UserBasedSimilarity(DataSet& ds);
+	UserBasedSimilarity(string Id,DataSet& ds);
 	~UserBasedSimilarity();
 	void calculate(DataSet& ds);
 };

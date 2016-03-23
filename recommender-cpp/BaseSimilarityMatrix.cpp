@@ -10,21 +10,21 @@ BaseSimilarityMatrix::~BaseSimilarityMatrix()
 {
 }
 
-int BaseSimilarityMatrix::getIndexFromObjId(int objId){
+int BaseSimilarityMatrix::getIndexFromObjId(int objId)const{
 	stringstream ss;
 	ss << objId;
 	string str;
 	ss >> str;
 	return _idMapping->getIndex(str);
 }
-int BaseSimilarityMatrix::getObjIdFromIndex(int index){
+int BaseSimilarityMatrix::getObjIdFromIndex(int index)const{
 	stringstream ss(_idMapping->getValue(index));
 	int r;
 	ss >> r;
 	return r;
 }
 
-RatingCountMatrix& BaseSimilarityMatrix::getRatingCountMatrix(int x, int y){
+RatingCountMatrix& BaseSimilarityMatrix::getRatingCountMatrix(int x, int y)const{
 	int xx = getIndexFromObjId(x);
 	int yy = getIndexFromObjId(y);
 

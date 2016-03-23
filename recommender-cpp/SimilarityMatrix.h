@@ -29,11 +29,10 @@ public:
 	*/
 	virtual string getId();
 
-	virtual RatingCountMatrix getRatingCountMatrix(int idX, int idY)const = 0;
+	virtual RatingCountMatrix& getRatingCountMatrix(int idX, int idY)const = 0;
 
 	virtual bool isRatingCountMatrixAvailable()const = 0;
 
-	virtual  void print() const = 0;
 	virtual ~SimilarityMatrix() = 0;
 };
 

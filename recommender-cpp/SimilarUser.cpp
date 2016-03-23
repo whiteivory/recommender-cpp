@@ -16,7 +16,7 @@ void SimilarUser::susort(vector<SimilarUser>& vu){
 	sort(vu.begin(), vu.end());
 }
 
-vector<User> SimilarUser::getTopNFriends(vector<SimilarUser>& vu, int topN)const{
+vector<SimilarUser> SimilarUser::getTopNFriends(vector<SimilarUser>& vu, int topN){
 	vector<User> rv;
 		for (vector<SimilarUser>::reverse_iterator it1 = vu.rbegin(); it1 != vu.rend(); it1++){
 			if (topN-- <= 0)break;

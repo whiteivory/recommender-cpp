@@ -17,7 +17,7 @@ public:
 	static void print(const vector<SimilarUser>&vu,const string& header);
 
 	bool operator<(const SimilarUser& rhs) { return _similiraty < rhs._similiraty; }
-	vector<User> getTopNFriends(vector<SimilarUser>& vu, int topN)const;
+	static vector<SimilarUser> getTopNFriends(vector<SimilarUser>& vu, int topN);
 private:
 	User* _friend;
 	double _similiraty;

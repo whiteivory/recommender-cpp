@@ -20,12 +20,18 @@ protected:
 	ValueToIndexMapping* _idMapping = new ValueToIndexMapping();  //由于是用二维数组实现，所以index必须是连续整数，所以用map来进行映射。
 	BaseSimilarityMatrix();
 
-	int getIndexFromObjId(int objId);//obj可以是item，可以是User
-	int getObjIdFromIndex(int index);
+	int getIndexFromObjId(int objId)const;//obj可以是item，可以是User
+	int getObjIdFromIndex(int index)const;
 
+	double** getSimilarityMatrix() {
+		return _similarityValues;
+	}
+	bool isRatingCountMatrixAvailable() const{
+		return _keepRatingCountMatrix;
+	}
 
 public:
-	RatingCountMatrix& getRatingCountMatrix(int x, int y);
+	RatingCountMatrix& getRatingCountMatrix(int x, int y)const;
 	double getValue(int idx, int idy);
 	virtual void calculate(DataSet& ds) = 0;
 	virtual ~BaseSimilarityMatrix();
