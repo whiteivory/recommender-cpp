@@ -9,6 +9,14 @@ class A{//³éÏóÀà
 public:
 	virtual void foo() = 0;
 };
+class C
+{
+public:
+	C();
+	~C();
+private:
+
+};
 class B{
 public:
 	A getA();
