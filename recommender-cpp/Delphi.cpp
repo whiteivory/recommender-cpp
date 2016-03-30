@@ -47,7 +47,7 @@ vector<SimilarUser> Delphi::findSimilarUsers(const User& user, int topN){
 
 void Delphi::findFriendsBasedOnUserSimilarity(const User& user) {
 
-	for (User fr : _dataset->getUsers()) {
+	for (User fr : *(_dataset->getUsers())) {
 
 		if (user.getId() != fr.getId()) {
 
@@ -62,7 +62,7 @@ vector<PredictedItemRating> Delphi::recommend(const User& user, int topN)const {
 
 	double maxRating = -1.0;
 
-	for (Item& item : _dataset->getItems()) {
+	for (Item& item : *(_dataset->getItems())) {
 
 		// only consider items that user hasn't rated yet or doesn't own the content
 		if (!skipItem(user, item)) {
@@ -113,7 +113,7 @@ bool Delphi::skipItem(const User& user, const Item& item)const {
 }
 
 double Delphi::predictRating(int userId, int itemId)const {
-	return predictRating(_dataset->getUser(userId), _dataset->getItem(itemId));
+	return predictRating(*(_dataset->getUser(userId)), *(_dataset->getItem(itemId)));
 }
 
 double Delphi::predictRating(const User& user, const Item& item) const{
@@ -144,7 +144,7 @@ double Delphi::estimateUserBasedRating(const User& user,const Item& item)const {
 		existingRatingByUser = user.getItemRating(item.getItemId());
 	}
 	else {
-		for (User& anotherUser : _dataset->getUsers()) {
+		for (User& anotherUser : *_dataset->getUsers()) {
 			// only consider users that rated this item
 			if (anotherUser.hasItemRating(itemId)){
 				Rating itemRating = anotherUser.getItemRating(itemId);

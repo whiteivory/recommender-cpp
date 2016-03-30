@@ -24,7 +24,7 @@ void UserBasedSimilarity::calculate(DataSet& dataSet){
 	stringstream ss;
 	// if we want to use mapping from userId to index then generate 
 	// index for every userId
-		for (User uu : dataSet.getUsers()) {
+		for (User uu : *dataSet.getUsers()) {
 			ss << uu.getId();
 			string userId;
 			ss >> userId;
@@ -34,12 +34,12 @@ void UserBasedSimilarity::calculate(DataSet& dataSet){
 	for (int u = 0; u < nUsers; u++) {
 
 		int userAId = getObjIdFromIndex(u);
-		User userA = dataSet.getUser(userAId);
+		User userA = *dataSet.getUser(userAId);
 
 		for (int v = u + 1; v < nUsers; v++) {
 
 			int userBId = getObjIdFromIndex(v);
-			User userB = dataSet.getUser(userBId);
+			User userB = *dataSet.getUser(userBId);
 
 			RatingCountMatrix* rcm = new RatingCountMatrix(userA, userB, nRatingValues);
 
