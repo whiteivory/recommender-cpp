@@ -95,4 +95,21 @@ int XMLDataSet::loadData(){
 		item = item->NextSiblingElement("Item");
 	}
 	xdc.Clear();
+
+	//load Ratings.xml
+	eResult = xdc.LoadFile("data/ratings.xml");
+	XMLCheckResult(eResult);
+	proot = xdc.FirstChildElement(); 
+	XMLElement* rating = proot->FirstChildElement("Rating");
+	while (rating!=nullptr)
+	{
+		int userId, itemId, star;
+		rating->FirstChildElement("UserId")->QueryIntText(&userId);
+		rating->FirstChildElement("ItemId")->QueryIntText(&itemId);
+		rating->FirstChildElement("Star")->QueryIntText(&star);
+		Rating r(userId, itemId, star);
+		_allRatings->push_back(r);
+		rating = rating->NextSiblingElement("Rating");
+
+	}
 }
