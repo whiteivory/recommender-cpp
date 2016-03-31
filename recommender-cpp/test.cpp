@@ -24,18 +24,3 @@ private:
 	B* _bb;
 };
 
-void main(){
-	/*
-
-	cout << u->getname();
-	delete u;
-	Rating r(1, 2, 3);
-	cout << r;*/
-	//Rating& a = *new Rating(1, 2, 4);
-	//Rating& b = *new Rating(1, 3, 4);
-//	a = b;
-	vector<Rating> v;
-	Rating a(1, 2, 3);
-	v.push_back(a);
-	sort(v.begin(), v.end());
-}

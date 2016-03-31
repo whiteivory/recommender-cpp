@@ -45,7 +45,7 @@ RatingCountMatrix& RatingCountMatrix::operator=(const RatingCountMatrix&rhs){
 }
 
 void RatingCountMatrix::calculate(const User& u1, const User& u2){
-	for each (auto& ratingByA in u1.getAllRatings())
+	for each (auto& ratingByA in *u1.getAllRatings())
 	{
 		if (u2.hasItemRating(ratingByA.getItemId())){
 			Rating ratingByB = u2.getItemRating(ratingByA.getItemId());

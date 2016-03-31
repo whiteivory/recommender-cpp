@@ -31,7 +31,7 @@ public:
 		string tmp = ss.str();
 		init(id, tmp,li);
 	}
-	User(const User& rhs){ init(rhs._id, rhs._name, rhs.getAllRatings()); }
+	User(const User& rhs){ init(rhs._id, rhs._name, *rhs.getAllRatings()); }
 	~User();
 
 	int getId()const{ return _id; }
@@ -44,8 +44,8 @@ public:
 
 	double getAverageRating()const;
 	void setRatings(const vector<Rating>& li)const;
-	const vector<Rating>& getAllRatings()const;  //不允许改动，设置const
-	const vector<int>& getAllItemID() const;
+	const vector<Rating>* getAllRatings()const;  //不允许改动，设置const
+	const vector<int>* getAllItemID() const;
 	bool hasItemRating(int ItemID)const;
 	Rating getItemRating(int ItemID)const;
 	vector<Content> getUserContent()const;
@@ -65,9 +65,9 @@ protected:
 	map<int, Rating>* ratingsByItemId;
 	vector<Content>* userContent;
 private://由于这两个只在调用get函数的时候才生成，所以不设置成protected
-	mutable vector<Rating> _allRatings;
+	mutable vector<Rating>* _allRatings;
 	mutable bool _hasSetAllratings = false;  //mutable的运用
-	mutable vector<int> _allItemId;
+	mutable vector<int>* _allItemId;
 	mutable bool _hasSetAllItemId = false;
 };
 

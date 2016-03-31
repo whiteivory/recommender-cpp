@@ -12,8 +12,8 @@ public:
 	virtual int getUserCount()const = 0; //number of availabel user
 	virtual int getItemCount() const= 0; // item
 	virtual vector<Rating>* getRatings() const= 0;
-	virtual double getAverageItemRating()const = 0;
-	virtual double getAverageUserRating()const = 0;
+	virtual double getAverageItemRating(int)const = 0;
+	virtual double getAverageUserRating(int)const = 0;
 	virtual string getName()const = 0;
 	
 	virtual User* getUser(int userId) const = 0;

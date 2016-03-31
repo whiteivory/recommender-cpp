@@ -37,27 +37,31 @@ int XMLDataSet::loadData(){
 	//load user
 	XMLDocument xdc;
 	XMLError eResult;
-	vector<int> recs;
 	eResult = xdc.LoadFile("data/users.xml");
 	XMLCheckResult(eResult);
 	XMLElement* proot = xdc.FirstChildElement();
 	XMLElement* user = proot->FirstChildElement("User");
 	while (user != nullptr){
 		//User mu;
-		string userId, userName;
-		
-		userId = user->FirstChildElement("UserId")->GetText();
+		string  userName;
+		int userId;
+		vector<Rating> recs;
+		user->FirstChildElement("UserId")->QueryIntText(&userId);
 		userName = user->FirstChildElement("UserName")->GetText();
 		XMLElement* first = user->FirstChildElement("Rating");
 		while (first != nullptr){
-			int rec;
-			first->QueryIntText(&rec);
-			recs.push_back(rec);
+			int itemId, rating;
+			first->FirstChildElement("PageId")->QueryIntText(&itemId);
+			first->FirstChildElement("star")->QueryIntText(&rating);
+			Rating ra(userId, itemId, rating);
+			recs.push_back(ra);
 			first = first->NextSiblingElement("Rating");
 		}
-		for (int i = 0; i < recs.size(); i++){
-			cout << recs[i] << " ";
-		}
+		User mu(userId, userName, recs);
+		pair<int, User> p = make_pair(userId, mu);
+		_allUsers->insert(p);
+		_allUsersOnly->push_back(mu);
+
 		user = user->NextSiblingElement("User");
 	}
 

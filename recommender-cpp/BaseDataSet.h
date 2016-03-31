@@ -9,7 +9,7 @@
 class BaseDataSet :
 	public DataSet
 {
-private:
+protected:
 	vector<Rating>* _allRatings;
 	unordered_map<int, User>* _allUsers;
 	vector<User>* _allUsersOnly;
@@ -21,17 +21,17 @@ public://get
 		return &(*(_allItems->find(itemId))).second;
 	}
 
-	double getAverageItemRating(int itemId) {
+	double getAverageItemRating(int itemId) const{
 		return (*getItem(itemId)).getAverateRating();
 	}
 
-	double getAverageUserRating(int userId) {
+	double getAverageUserRating(int userId) const{
 		return (*getUser(userId)).getAverageRating();
 	}
 	User* getUser(int userId)const {
 		return &(*(_allUsers->find(userId))).second;
 	}
-	int getUserCount() {
+	int getUserCount() const{
 		return _allUsers->size();
 	}
 	virtual vector<User>* getUsers() const;
@@ -39,9 +39,8 @@ public://get
 	virtual vector<Item>* getItems() const;
 	mutable bool _iflag = false;
 	//total of availavle item ratings
-	virtual int getRatingCount()const{ return _allRatings->size(); }
-	virtual int getUserCount()const{ return _allUsers->size(); }
-	virtual vector<Rating>* getRatings(){ return _allRatings; }
+	virtual int getRatingsCount()const{ return _allRatings->size(); }
+	virtual vector<Rating>* getRatings()const{ return _allRatings; }
 	virtual int getItemCount() const{ return _allItems->size(); }
 public:
 	BaseDataSet();
