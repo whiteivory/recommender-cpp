@@ -1,13 +1,13 @@
 #include "User.h"
 
-void User::init(int id, string name, const list<Rating>& li){
+void User::init(int id, string name, const vector<Rating>& li){
 	_id = id;
 	_name = name;
 	ratingsByItemId = new map < int, Rating >;
 	setRatings(li);
-	userContent = new list < Content >(3);
-	_allRatings = *new list<Rating>();
-	_allItemId = *new list<int>();
+	userContent = new vector < Content >(3);
+	_allRatings = *new vector<Rating>();
+	_allItemId = *new vector<int>();
 }
 
 
@@ -19,7 +19,7 @@ User::~User()
 	delete &_allItemId;
 }
 
-void User::setRatings(const list<Rating>& li)const{
+void User::setRatings(const vector<Rating>& li)const{
 	ratingsByItemId->clear();
 	for each (Rating ra in li)
 	{
@@ -29,14 +29,14 @@ void User::setRatings(const list<Rating>& li)const{
 }
 double User::getAverageRating() const{
 	double allRatingsSum = 0.0;
-	list<Rating> allUserRatings = getAllRatings();
+	vector<Rating> allUserRatings = getAllRatings();
 	for (Rating rating : allUserRatings) {
 		allRatingsSum += rating.getRating();
 	}
 	return allUserRatings.size() > 0 ? allRatingsSum / allUserRatings.size() : 2.5;
 }
 
-const list<Rating>& User::getAllRatings() const{
+const vector<Rating>& User::getAllRatings() const{
 	if (_hasSetAllratings) return _allRatings;
 	for (map<int, Rating>::iterator it = ratingsByItemId->begin(); it != ratingsByItemId->end(); it++){
 		_allRatings.push_back(it->second);
@@ -44,7 +44,7 @@ const list<Rating>& User::getAllRatings() const{
 	_hasSetAllratings = true;
 	return _allRatings;  //return by value;
 }
-const list<int>& User::getAllItemID()const{
+const vector<int>& User::getAllItemID()const{
 	if (_hasSetAllItemId) return _allItemId;
 	for (map<int, Rating>::iterator it = ratingsByItemId->begin(); it != ratingsByItemId->end(); it++){
 		_allItemId.push_back(it->first);
@@ -58,7 +58,7 @@ Rating User::getItemRating(int ItemID)const{
 	return ratingsByItemId->find(ItemID)->second;
 }
 
-list<Content> User::getUserContent()const{
+vector<Content> User::getUserContent()const{
 	return *userContent;
 }
 Content User::getUserContent(string contentId)const{
@@ -73,7 +73,7 @@ Content User::getUserContent(string contentId)const{
 	return tmp;
 }
 
-void User::setUserContent(const list<Content>& li){
+void User::setUserContent(const vector<Content>& li){
 	*userContent = li;
 }
 
@@ -83,8 +83,8 @@ void User::addUserContent(Content c){
 
 
 vector<int> User::getSharedItem(const User& x, const User& y){
-	list<int> lx = x.getAllItemID();
-	list<int> ly = y.getAllItemID();
+	vector<int> lx = x.getAllItemID();
+	vector<int> ly = y.getAllItemID();
 	vector<int> r;
 	for each (int x in lx)
 	{

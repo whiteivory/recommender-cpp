@@ -18,14 +18,14 @@ using namespace std;
 class User
 {
 public:
-	User(int id, string name, const list<Rating>&li){
+	User(int id, string name, const vector<Rating>&li){
 		init(id, name, li);
 	}
 	User(int id, string name) {
-		list<Rating> li; init(id, name, li);
+		vector<Rating> li; init(id, name, li);
 	}
 	User(int id)  {
-		list<Rating> li;
+		vector<Rating> li;
 		stringstream ss;
 		ss << id;
 		string tmp = ss.str();
@@ -39,16 +39,16 @@ public:
 	//下面两行暂时不需要了，因为我忘了如果参数时本类的话，可以直接访问其private
 	//const map<int, Rating>* getRatingsByItemIdP()const{ return ratingsByItemId; } //注意这里的返回值const,如果成员是引用的话，就返回const引用
 	//const list<Content>* getUserContentP()const { return userContent; }//这两个get主要是为了 = 用的，不用来改变，所以声明const
-	void setUserContent(const list<Content>& c);
+	void setUserContent(const vector<Content>& c);
 
 
 	double getAverageRating()const;
-	void setRatings(const list<Rating>& li)const;
-	const list<Rating>& getAllRatings()const;  //不允许改动，设置const
-	const list<int>& getAllItemID() const;
+	void setRatings(const vector<Rating>& li)const;
+	const vector<Rating>& getAllRatings()const;  //不允许改动，设置const
+	const vector<int>& getAllItemID() const;
 	bool hasItemRating(int ItemID)const;
 	Rating getItemRating(int ItemID)const;
-	list<Content> getUserContent()const;
+	vector<Content> getUserContent()const;
 	Content getUserContent(string contentId) const;
 
 	void addUserContent(Content c);
@@ -58,16 +58,16 @@ public:
 	//operator
 	User& operator=(const User& rhs);
 private:
-	void init(int id, string name, const list<Rating>&);  //注意cpp不像java一样可以用this调用重载constructor，所以应该用这种形式
+	void init(int id, string name, const vector<Rating>&);  //注意cpp不像java一样可以用this调用重载constructor，所以应该用这种形式
 	int _id;  //userID
 	string _name;
 protected:
 	map<int, Rating>* ratingsByItemId;
-	list<Content>* userContent;
+	vector<Content>* userContent;
 private://由于这两个只在调用get函数的时候才生成，所以不设置成protected
-	mutable list<Rating> _allRatings;
+	mutable vector<Rating> _allRatings;
 	mutable bool _hasSetAllratings = false;  //mutable的运用
-	mutable list<int> _allItemId;
+	mutable vector<int> _allItemId;
 	mutable bool _hasSetAllItemId = false;
 };
 

@@ -43,7 +43,7 @@ int XMLDataSet::loadData(){
 	XMLElement* proot = xdc.FirstChildElement();
 	XMLElement* user = proot->FirstChildElement("User");
 	while (user != nullptr){
-		User mu;
+		//User mu;
 		string userId, userName;
 		
 		userId = user->FirstChildElement("UserId")->GetText();
