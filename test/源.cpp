@@ -48,6 +48,21 @@ int readXml(){
 		cout << recs[i] << " ";
 	}
 }
-int main(){
+class A{
+public:
+	A(){
+		_a = 1;
+	}
+	int _a;
+};
+class B:public A{
+public:
+	B(){
 
+	}
+private:
+};
+int main(){
+	B b;
+	cout << b._a;
 }

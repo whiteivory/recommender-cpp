@@ -48,6 +48,6 @@ public:
 	~BaseDataSet();
 	virtual bool isIdMappingRequired()const{ return false; }
 
-	virtual void loadData() = 0;//根据从文件读或者从数据库读来进行继承
+	virtual int loadData() = 0;//根据从文件读或者从数据库读来进行继承
 };
 
