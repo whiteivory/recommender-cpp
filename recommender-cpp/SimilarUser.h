@@ -7,7 +7,9 @@ class SimilarUser
 {
 public:
 	SimilarUser(const User& u, double simi);
+	SimilarUser(const SimilarUser& rhs);
 	~SimilarUser();
+	SimilarUser& operator=(const SimilarUser& rhs);
 	int getFriendId()const { return _friend->getId(); }
 	string getFriendName() const { return _friend->getname(); }
 	double getSimilarity()const { return _similiraty; }

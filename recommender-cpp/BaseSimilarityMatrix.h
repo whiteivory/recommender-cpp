@@ -15,8 +15,11 @@ protected:
 	string _id;
 	bool _keepRatingCountMatrix = false;
 	int _nObj;
-	double** _similarityValues;
-	RatingCountMatrix** _ratingCountMatrix;
+
+	double** _similarityValues; //相似矩阵，[x,y]用户x和用户y的相似度，是根据下面一项计算出来的，也是最终的相似度
+	RatingCountMatrix** _ratingCountMatrix;//[x,y]表示用户x和用户y的 RatingCOuntMatrix
+
+
 	ValueToIndexMapping* _idMapping = new ValueToIndexMapping();  //由于是用二维数组实现，所以index必须是连续整数，所以用map来进行映射。
 	BaseSimilarityMatrix();
 

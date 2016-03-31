@@ -9,7 +9,9 @@ void User::init(int id, string name, const vector<Rating>& li){
 	userContent = new vector < Content >(3);
 	setRatings(li);
 }
-
+User::User(const User& rhs){ 
+	init(rhs._id, rhs._name, *rhs.getAllRatings());
+}
 
 User::~User()
 {
@@ -37,11 +39,14 @@ double User::getAverageRating() const{
 }
 
 const vector<Rating>* User::getAllRatings() const{
-	if (_hasSetAllratings) return _allRatings;
+	/*
+		if (_hasSetAllratings) return _allRatings;
 	for (map<int, Rating>::iterator it = ratingsByItemId->begin(); it != ratingsByItemId->end(); it++){
 		_allRatings->push_back(it->second);
 	}
 	_hasSetAllratings = true;
+	*/
+
 	return _allRatings;  //return by value;
 }
 const vector<int>* User::getAllItemID()const{

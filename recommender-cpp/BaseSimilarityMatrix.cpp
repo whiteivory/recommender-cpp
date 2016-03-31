@@ -18,7 +18,8 @@ int BaseSimilarityMatrix::getIndexFromObjId(int objId)const{
 	return _idMapping->getIndex(str);
 }
 int BaseSimilarityMatrix::getObjIdFromIndex(int index)const{
-	stringstream ss(_idMapping->getValue(index));
+	string tmp = _idMapping->getValue(index);
+	stringstream ss(tmp);
 	int r;
 	ss >> r;
 	return r;

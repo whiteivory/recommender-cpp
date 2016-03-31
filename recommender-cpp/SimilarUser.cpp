@@ -6,11 +6,21 @@ SimilarUser::SimilarUser(const User& u ,double simi)
 	_friend = new User(u);
 	_similiraty = simi;
 }
-
+SimilarUser::SimilarUser(const SimilarUser& rhs)
+{
+	_friend = new User(*rhs._friend);
+	_similiraty = rhs._similiraty;
+}
 
 SimilarUser::~SimilarUser()
 {
 	delete _friend;
+}
+
+SimilarUser& SimilarUser::operator=(const SimilarUser& rhs){
+	*_friend = *rhs._friend;
+	_similiraty = rhs._similiraty;
+	return *this;
 }
 void SimilarUser::susort(vector<SimilarUser>& vu){
 	sort(vu.begin(), vu.end());
@@ -23,8 +33,10 @@ vector<SimilarUser> SimilarUser::getTopNFriends(vector<SimilarUser>& vu, int top
 			if (topN-- <= 0)break;
 			rv.push_back(*it1);
 		}
+		/*
 		if (topN > 0)
-			throw invalid_argument("topN too big!");
+		throw invalid_argument("topN too big!");
+		*/
 	return rv;
 }
 

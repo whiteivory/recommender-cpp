@@ -21,10 +21,11 @@ void UserBasedSimilarity::calculate(DataSet& dataSet){
 	for (int i = 0; i < nUsers; i++)
 		_ratingCountMatrix[i] = new RatingCountMatrix[nUsers];
 
-	stringstream ss;
+
 	// if we want to use mapping from userId to index then generate 
 	// index for every userId
 		for (User uu : *dataSet.getUsers()) {
+			stringstream ss;
 			ss << uu.getId();
 			string userId;
 			ss >> userId;

@@ -31,7 +31,7 @@ public:
 		string tmp = ss.str();
 		init(id, tmp,li);
 	}
-	User(const User& rhs){ init(rhs._id, rhs._name, *rhs.getAllRatings()); }
+	User(const User& rhs);
 	~User();
 
 	int getId()const{ return _id; }

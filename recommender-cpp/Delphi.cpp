@@ -25,7 +25,7 @@ Delphi::~Delphi()
 const double Delphi::DEFAULT_SIMILARITY_THRESHOLD = 0.5;
 const double Delphi::MAX_RATING = 5;
 
-vector<SimilarUser> Delphi::findSimilarUsers(const User& user, int topN){
+vector<SimilarUser> Delphi::findSimilarUsers(const User& user, int topN)const{
 
 	if (isUserBased()) {
 
@@ -45,15 +45,16 @@ vector<SimilarUser> Delphi::findSimilarUsers(const User& user, int topN){
 	return SimilarUser::getTopNFriends(*_similarUsers, topN);
 }
 
-void Delphi::findFriendsBasedOnUserSimilarity(const User& user) {
+void Delphi::findFriendsBasedOnUserSimilarity(const User& user)const {
 
-	for (User fr : *(_dataset->getUsers())) {
+	for (User& fr : *(_dataset->getUsers())) {
 
 		if (user.getId() != fr.getId()) {
 
 			double similarity =
 				_similarityMatrix->getValue(user.getId(), fr.getId());
-			_similarUsers->push_back(*new SimilarUser(fr, similarity));
+			SimilarUser s(fr, similarity);
+			_similarUsers->push_back(s);
 		}
 	}
 }
