@@ -64,5 +64,35 @@ int XMLDataSet::loadData(){
 
 		user = user->NextSiblingElement("User");
 	}
+	xdc.Clear();
 
+	//load items
+	/*	unordered_map<int, Item>* _allItems;
+	vector<Item>* _allItemsOnly;
+	*/
+	eResult = xdc.LoadFile("data/items.xml");
+	XMLCheckResult(eResult);
+	proot = xdc.FirstChildElement(); //<Items>
+	XMLElement* item = proot->FirstChildElement("Item");
+	while (item != nullptr){
+		int itemId;
+		vector<Rating> recs;
+		item->FirstChildElement("ItemId")->QueryIntText(&itemId);
+		XMLElement* first = item->FirstChildElement("Rating");
+		while (first != nullptr){
+			int userId, rating;
+			first->FirstChildElement("UserId")->QueryIntText(&userId);
+			first->FirstChildElement("star")->QueryIntText(&rating);
+			Rating ra(userId, itemId, rating);
+			recs.push_back(ra);
+			first = first->NextSiblingElement("Rating");
+		}
+		Item mi(itemId, "", recs);
+		pair<int, Item> p = make_pair(itemId, mi);
+		_allItems->insert(p);
+		_allItemsOnly->push_back(mi);
+
+		item = item->NextSiblingElement("Item");
+	}
+	xdc.Clear();
 }

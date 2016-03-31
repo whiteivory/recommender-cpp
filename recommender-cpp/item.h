@@ -10,7 +10,7 @@ class Item
 public:
 	Item();
 	Item(const Item& rhs);
-	Item(int id, string name, const list<Rating>& li);
+	Item(int id, string name, const vector<Rating>& li);
 	~Item();
 	Item& operator= (const Item& rhs);
 	int getItemId()const{ return _itemId; }

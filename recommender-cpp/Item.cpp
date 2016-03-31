@@ -1,10 +1,10 @@
 #include"Item.h"
 
-Item::Item(int id, string name,const list<Rating>& li)
+Item::Item(int id, string name,const vector<Rating>& li)
 	:_itemId(id), _name(name)
 {
 	_ratingsByUserId = new unordered_map<int, Rating>(li.size());
-	for (list<Rating>::const_iterator it = li.begin(); it != li.end(); it++){
+	for (vector<Rating>::const_iterator it = li.begin(); it != li.end(); it++){
 		_ratingsByUserId->insert(make_pair(it->getItemId(), *it));
 	}
 }
@@ -16,7 +16,7 @@ Item::Item(){
 Item::Item(const Item& rhs){
 	_itemId = rhs._itemId;
 	_name = rhs._name;
-	*_ratingsByUserId = *rhs._ratingsByUserId;
+	_ratingsByUserId = new  unordered_map<int, Rating>(*rhs._ratingsByUserId);
 }
 Item::~Item(){
 	delete _ratingsByUserId;
